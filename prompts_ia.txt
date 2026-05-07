@@ -1,0 +1,2 @@
+Cesar Jimenez:
+Ayúdame con un script básico en Bash para un quiz matemático. Necesito un menú con opciones y la parte de problemas de suma con intentos y números aleatorios.
