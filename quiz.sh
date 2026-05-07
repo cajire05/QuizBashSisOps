@@ -86,8 +86,34 @@ problema_resta() {
 }
 
 problema_multiplicacion() {
+    local a=$((RANDOM % 101))
+    local b=$((RANDOM % 101))
+    local correcta=$((a * b))
+    local respuesta
+    local intentos=1
+
     echo
-    echo "Opción en desarrollo."
+    echo "Problema de multiplicación"
+
+    while [ $intentos -le 3 ]; do
+        echo -n "¿Cuánto es $a x $b? "
+        read respuesta
+
+        if ! [[ "$respuesta" =~ ^[0-9]+$ ]]; then
+            echo "Ingresa un número válido."
+        elif [ "$respuesta" -eq "$correcta" ]; then
+            echo "¡Correcto!"
+            echo
+            return
+        else
+            echo "Respuesta incorrecta."
+        fi
+
+        intentos=$((intentos + 1))
+    done
+
+    echo "Ya no quedan intentos."
+    echo "La respuesta correcta era: $correcta"
     echo
 }
 
@@ -102,18 +128,10 @@ while true; do
     read opcion
 
     case "$opcion" in
-        1)
-            problema_suma
-            ;;
-        2)
-            problema_resta
-            ;;
-        3)
-            problema_multiplicacion
-            ;;
-        4)
-            problema_division
-            ;;
+        1) problema_suma ;;
+        2) problema_resta ;;
+        3) problema_multiplicacion ;;
+        4) problema_division ;;
         9)
             echo "Saliendo del programa..."
             exit 0
