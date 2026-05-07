@@ -1,2 +1,5 @@
 Cesar Jimenez:
 Ayúdame con un script básico en Bash para un quiz matemático. Necesito un menú con opciones y la parte de problemas de suma con intentos y números aleatorios.
+
+Juan David Ocampo:
+Necesito que me ayudes a termianr el script de un quiz matematico, Necesito hacer la operacion de resta con 3 intentos y numero aleatorios
