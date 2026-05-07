@@ -45,8 +45,43 @@ problema_suma() {
 }
 
 problema_resta() {
+    local a=$((RANDOM % 101))
+    local b=$((RANDOM % 101))
+    local correcta
+    local respuesta
+    local intentos=1
+    local aux
+
+    if [ $a -lt $b ]; then
+        aux=$a
+        a=$b
+        b=$aux
+    fi
+
+    correcta=$((a - b))
+
     echo
-    echo "Opción en desarrollo."
+    echo "Problema de resta"
+
+    while [ $intentos -le 3 ]; do
+        echo -n "¿Cuánto es $a - $b? "
+        read respuesta
+
+        if ! [[ "$respuesta" =~ ^[0-9]+$ ]]; then
+            echo "Ingresa un número válido."
+        elif [ "$respuesta" -eq "$correcta" ]; then
+            echo "¡Correcto!"
+            echo
+            return
+        else
+            echo "Respuesta incorrecta."
+        fi
+
+        intentos=$((intentos + 1))
+    done
+
+    echo "Ya no quedan intentos."
+    echo "La respuesta correcta era: $correcta"
     echo
 }
 
