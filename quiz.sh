@@ -118,8 +118,34 @@ problema_multiplicacion() {
 }
 
 problema_division() {
+    local b=$((RANDOM % 10 + 1))
+    local correcta=$((RANDOM % 11))
+    local a=$((b * correcta))
+    local respuesta
+    local intentos=1
+
     echo
-    echo "Opción en desarrollo."
+    echo "Problema de división"
+
+    while [ $intentos -le 3 ]; do
+        echo -n "¿Cuánto es $a / $b? "
+        read respuesta
+
+        if ! [[ "$respuesta" =~ ^[0-9]+$ ]]; then
+            echo "Ingresa un número válido."
+        elif [ "$respuesta" -eq "$correcta" ]; then
+            echo "¡Correcto!"
+            echo
+            return
+        else
+            echo "Respuesta incorrecta."
+        fi
+
+        intentos=$((intentos + 1))
+    done
+
+    echo "Ya no quedan intentos."
+    echo "La respuesta correcta era: $correcta"
     echo
 }
 
